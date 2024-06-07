@@ -1,0 +1,146 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            padding-left: 18px;
+            padding-right: 13px;
+            padding-top: 5px;
+        }
+    </style>
+  <title>Heath & Welness</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="display-3" style="text-align: center;">Add Medication</h1>
+    <li class="w-100">
+      <a href="/" class="nav-link px-0"> Back </a>
+  </li>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#onetime">One Time Medication</a></li>
+    <li><a data-toggle="tab" href="#recurring">Recurring Medication</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="onetime" class="tab-pane fade in active">
+      <h3>One Time Medication</h3>
+      <form id="onetimeform" action="onetime" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Medicine Name:-</label>
+            <input  required type="text" class="form-control" name="medicine" id="formGroupExampleInput" placeholder="Example Medicine">
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Description:-</label>
+            <input  required type="text" class="form-control" name="description" id="formGroupExampleInput2" placeholder="Another Description">
+          </div>
+          
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Date:-</label>
+                    <input  required type="date" name="date" class="form-control" id="formGroupExampleInput2" placeholder="Another Description">
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Time:-</label>
+                    <input  required type="time" name="time" class="form-control" id="formGroupExampleInput2" placeholder="Another Description">
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Files:-</label>
+                    <input  required type="file" name="onetimefile" class="form-control" id="formGroupExampleInput2" >
+                  </div>
+
+                  <input  required type="submit" value="Add Medication" id="onetimesubmitt">
+                </form>
+    </div>
+    
+
+    <!-- Recurring Form -->
+    <div id="recurring" class="tab-pane fade">
+      <h3>Add Recurring Medication</h3>
+      <form id="recurringform" action="recurring" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Medicine Name:-</label>
+            <input  required type="text" class="form-control" name="medicine" id="formGroupExampleInput" placeholder="Example Medicine">
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Description:-</label>
+            <input  required type="text" class="form-control" name="description" id="formGroupExampleInput2" placeholder="Another Description">
+          </div>
+          
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Start Date:-</label>
+                    <input  required type="date" class="form-control" id="formGroupExampleInput2" id="startdate" name="startdate" placeholder="">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">End Date:-</label>
+                    <input  required type="date" class="form-control" id="formGroupExampleInput2" id="enddate" name="enddate" placeholder="">
+                  </div>
+
+                  <label for="frequency" >Frequency</label>
+                  <select name="frequency" id="frequency" onchange="changerecurring()"> 
+                    <option value="daily" id="daily">daily</option>
+                    <option value="weekly" id="weekly">weekly</option>
+                  </select>
+
+                  <div>
+                    <label for="day" id="day">Day</label>
+                    <select name="day" id="weeklyday">
+                      <option value="sunday" id="sunday">sunday</option>
+                      <option value="monday" id="monday">monday</option>
+                      <option value="tuesday" id="tuesday">tuesday</option>
+                      <option value="wenesday" id="wenesday">wenesday</option>
+                      <option value="thrusday" id="thrusday">thrusday</option>
+                      <option value="friday" id="friday">friday</option>
+                      <option value="saturday" id="saturday">saturday</option>
+                    </select>
+                  </div>
+
+
+
+
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Time:-</label>
+                    <input  required type="time" class="form-control" id="formGroupExampleInput2" name="time" placeholder="Another Description">
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Files:-</label>
+                    <input  required type="file" class="form-control"  id="formGroupExampleInput2" name="onetimefile">
+                  </div>
+
+                  <input  required type="submit" value="Add Medication" id="recuringsubmitt">
+                  </form>
+    </div>
+  </div>
+</div>
+</se>
+</body>
+
+<script>
+    console.log('sdgdrg');
+    document.getElementById('weeklyday').style.display='none';
+    document.getElementById('day').style.display='none';
+
+    function changerecurring(){
+        console.log('callll');
+        let frquency=document.getElementById('frequency').value;
+
+    if(frquency==='weekly'){
+        document.getElementById('weeklyday').style.display='block';
+        document.getElementById('day').style.display='block';
+
+    }
+    else{
+        document.getElementById('weeklyday').style.display='none';
+        document.getElementById('day').style.display='none';
+    }
+    }
+
+  
+
+</script>
+</html>

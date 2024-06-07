@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.11.1/dist/sweetalert2.all.min.js "></script>
+<link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.11.1/dist/sweetalert2.min.css " rel="stylesheet">
+  <style>
+    * {
+      margin-top: 10px;
+    }
+
+    .divider:after,
+    .divider:before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
+    }
+
+    .h-custom {
+      height: calc(100% - 73px);
+    }
+
+    @media (max-width: 450px) {
+      .h-custom {
+        height: 100%;
+      }
+    }
+
+    form {
+      margin-top: 25%;
+      padding-left: 60px;
+    }
+
+    input {
+      max-width: 70%;
+      min-height: 39px;
+      font-size: 20px;
+      margin: 15px;
+      text-align: center;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+            alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form id="loginform">
+            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+              <p class="lead fw-normal mb-0 me-3" style="padding-left: 25%;">Sign in </p>
+            </div>
+
+
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="email" class="form-control form-control-lg" placeholder="Enter email address" name="email"
+                id="email" required />
+              <!-- <label class="form-label" for="form3Example3">Email address</label> -->
+            </div>
+
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-3">
+              <input type="password" id="password" class="form-control form-control-lg" placeholder="Enter password"
+                name="password" id="" required />
+              <!-- <label class="form-label" for="form3Example4">Password</label> -->
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="button" value="Login" id="login" data-mdb-button-init data-mdb-ripple-init
+                class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem; margin-right: 31%;">Login</button>
+
+              <p class="small fw-bold mt-2 pt-1 mb-0" style="margin-right: 31%; margin-top: 20px; font-size: 20px;">
+                Don't have an account? <a href="http://localhost:9005" class="link-danger">Register</a></p>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+  </section>
+
+</body>
+
+<script>
+  //  +alert(window.navigator.userAgent);
+  // import swal from 'sweetalert';
+  if (document.querySelector("#login")) {
+    const login = document.querySelector('#login');
+    login.addEventListener('click', async () => {
+
+      const form = document.querySelector('#loginform');
+      let formData = new FormData(form);
+      let userData = new URLSearchParams(formData);
+
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          body: userData,
+          headers: {
+            'Content-Type': "application/x-www-form-urlencoded",
+          }
+        });
+        const resData = await response.json();
+        if (response.status === 200) {
+          window.location.replace("/dashboard");
+        } else {
+          await Swal.fire({
+            icon: "warning",
+            title: "invalid Username or Password",
+          });
+        }
+      } catch (error) {
+        alert(error);
+        console.log(alert(error1));
+      }
+
+    })
+  }</script>
+
+</html>
